@@ -15,4 +15,15 @@ public class Trie {
         }
         atual.fimDaPalavra = true;
     }
+
+    public boolean busca(String palavra){
+        NoTrie atual = raiz;
+        for(char c : palavra.toCharArray()){
+            if(atual.filho[c - 'a'] == null){
+                return false;
+            }
+            atual = atual.filho[c - 'a'];
+        }
+        return atual.fimDaPalavra;
+    }
 }
