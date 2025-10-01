@@ -28,4 +28,16 @@ public class Trie {
         return atual.fimDaPalavra;
     }
 
+    public boolean prefixo(String prefixo) {
+        NoTrie atual = raiz;
+        for(int i = 0; i < prefixo.length(); i++){
+            char c = prefixo.charAt(i);
+            int indice = c - 'a';
+            if (indice < 0 || indice >= 26) return false;
+            if (atual.filho[indice] == null) return false;
+            atual = atual.filho[indice];
+        }
+        return true;
+    }
+
 }
