@@ -7,11 +7,16 @@ public class Trie {
 
     public void inserir(String palavra){
         NoTrie atual = raiz;
-        for(char c : palavra.toCharArray()){
-            if(atual.filho[c - 'a'] == null){
-                atual.filho[c - 'a'] = new NoTrie();
+        for(int i = 0; i < palavra.length(); i++){
+            char c = palavra.charAt(i);
+            int posicaoLetra = c - 'a';
+
+            if(posicaoLetra >= 0 && posicaoLetra < 26){
+                if(atual.filho[posicaoLetra] == null){
+                    atual.filho[posicaoLetra] = new NoTrie();
+                }
+                atual = atual.filho[posicaoLetra];
             }
-            atual = atual.filho[c - 'a'];
         }
         atual.fimDaPalavra = true;
     }
