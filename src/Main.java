@@ -11,25 +11,95 @@ public class Main {
         String[] consultas = {"casa", "cas", "cabra", "dado", "xyz", "dia"};
         for (int i = 0; i < consultas.length; i++) {
             boolean achou = trie.busca(consultas[i]);
-            System.out.println("busca(\"" + consultas[i] + "\") = " + (achou ? "true" : "false"));
+            String resultado;
+
+            if (achou) {
+                resultado = "true";
+            } else {
+                resultado = "false";
+            }
+
+            System.out.println("busca(\"" + consultas[i] + "\") = " + resultado);
         }
 
         String[] prefixos = {"ca", "cab", "da", "zz"};
         for (int i = 0; i < prefixos.length; i++) {
             boolean tem = trie.prefixo(prefixos[i]);
-            System.out.println("prefixo(\"" + prefixos[i] + "\") = " + (tem ? "true" : "false"));
+            String resultado;
+
+            if (tem) {
+                resultado = "true";
+            } else {
+                resultado = "false";
+            }
+
+            System.out.println("prefixo(\"" + prefixos[i] + "\") = " + resultado);
         }
 
         boolean remDia = trie.remover("dia");
-        System.out.println("remover(\"dia\") = " + (remDia ? "true" : "false"));
-        System.out.println("busca(\"dia\") apos remover = " + (trie.busca("dia") ? "true" : "false"));
+        String resRemDia;
+
+        if (remDia) {
+            resRemDia = "true";
+        } else {
+            resRemDia = "false";
+        }
+
+        System.out.println("remover(\"dia\") = " + resRemDia);
+
+        boolean buscaDiaApos = trie.busca("dia");
+        String resBuscaDiaApos;
+
+        if (buscaDiaApos) {
+            resBuscaDiaApos = "true";
+        } else {
+            resBuscaDiaApos = "false";
+        }
+
+        System.out.println("busca(\"dia\") apos remover = " + resBuscaDiaApos);
 
         boolean remCasa = trie.remover("casa");
-        System.out.println("remover(\"casa\") = " + (remCasa ? "true" : "false"));
-        System.out.println("busca(\"casa\") apos remover = " + (trie.busca("casa") ? "true" : "false"));
-        System.out.println("busca(\"caso\") permanece = " + (trie.busca("caso") ? "true" : "false"));
+        String resRemCasa;
+
+        if (remCasa) {
+            resRemCasa = "true";
+        } else {
+            resRemCasa = "false";
+        }
+
+        System.out.println("remover(\"casa\") = " + resRemCasa);
+
+        boolean buscaCasaApos = trie.busca("casa");
+        String resBuscaCasaApos;
+
+        if (buscaCasaApos) {
+            resBuscaCasaApos = "true";
+        } else {
+            resBuscaCasaApos = "false";
+        }
+
+        System.out.println("busca(\"casa\") apos remover = " + resBuscaCasaApos);
+
+        boolean buscaCasoPermanece = trie.busca("caso");
+        String resBuscaCasoPermanece;
+
+        if (buscaCasoPermanece) {
+            resBuscaCasoPermanece = "true";
+        } else {
+            resBuscaCasoPermanece = "false";
+        }
+
+        System.out.println("busca(\"caso\") permanece = " + resBuscaCasoPermanece);
 
         boolean remNada = trie.remover("nada");
-        System.out.println("remover(\"nada\") (nao existe) = " + (remNada ? "true" : "false"));
+        String resRemNada;
+
+        if (remNada) {
+            resRemNada = "true";
+        } else {
+            resRemNada = "false";
+        }
+
+        System.out.println("remover(\"nada\") -> nao existe = " + resRemNada);
     }
 }
