@@ -44,40 +44,40 @@ public class Trie {
         }
         return true;
     }
-}
 
-public boolean remover(String palavra) {
-    if (!busca(palavra)) return false;
-    removerRec(raiz, palavra, 0);
-    return true;
-}
+    public boolean remover(String palavra) {
+        if (!busca(palavra)) return false;
+        removerRec(raiz, palavra, 0);
+        return true;
+    }
 
-private boolean removerRec(NoTrie no, String palavra, int profundidade) {
-    if (no == null) return false;
+    private boolean removerRec(NoTrie no, String palavra, int profundidade) {
+        if (no == null) return false;
 
-    if (profundidade == palavra.length()) {
-        no.fimDaPalavra = false;
+        if (profundidade == palavra.length()) {
+            no.fimDaPalavra = false;
 
+            for (int i = 0; i < 26; i++) {
+                if (no.filho[i] != null) return true;
+            }
+            return false;
+        }
+
+        int indice = palavra.charAt(profundidade) - 'a';
+        if (indice < 0 || indice >= 26) return true;
+
+        if (no.filho[indice] == null) return true;
+
+        boolean manterFilho = removerRec(no.filho[indice], palavra, profundidade + 1);
+
+        if (!manterFilho) {
+            no.filho[indice] = null;
+        }
+
+        if (no.fimDaPalavra) return true;
         for (int i = 0; i < 26; i++) {
             if (no.filho[i] != null) return true;
         }
         return false;
     }
-
-    int indice = palavra.charAt(profundidade) - 'a';
-    if (indice < 0 || indice >= 26) return true;
-
-    if (no.filho[indice] == null) return true;
-
-    boolean manterFilho = removerRec(no.filho[indice], palavra, profundidade + 1);
-
-    if (!manterFilho) {
-        no.filho[indice] = null;
-    }
-
-    if (no.fimDaPalavra) return true;
-    for (int i = 0; i < 26; i++) {
-        if (no.filho[i] != null) return true;
-    }
-    return false;
 }
